@@ -30,8 +30,8 @@ data <- data %>%
     mutate(days = dmy(data$dateRep))
 
 # Define UI for application that draws a histogram
-ui <- fluidPage(
-    titlePanel("The number of people to have died with the coronavirus"),
+ui <- fluidPage(theme = "bootstrap.css",
+    titlePanel(h1("The number of people to have died with the coronavirus")),
     
     sidebarLayout(
         sidebarPanel(
@@ -49,13 +49,15 @@ ui <- fluidPage(
             # sliderInput("years", "Years",
             # min(gapminder$year), max(gapminder$year),
             # value = c(1977, 2002))
-            
+            img(src = "logo-ecdc.png"),
+            h4("The downloadable data file from European Centre for Disease Prevention and Control is updated daily and contains the latest available public data on COVID-19")
         ),
         mainPanel(
             # Replace the `plotOutput()` with the plotly version
             plotlyOutput("plot"),
-            plotlyOutput("plot_cases"),
-            h4("The downloadable data file from European Centre for Disease Prevention and Control is updated daily and contains the latest available public data on COVID-19")
+            plotlyOutput("plot_cases")
+            
+            
         )
     )
 )
