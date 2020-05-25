@@ -31,7 +31,7 @@ data <- data %>%
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
-    titlePanel(h1("The number of people to have died with the coronavirus", align = "center")),
+    titlePanel(h1(strong("COVID-19 Dashboard"), align = "center")),
     
     sidebarLayout(
         sidebarPanel(
@@ -54,8 +54,12 @@ ui <- fluidPage(#theme = "bootstrap.css",
         ),
         mainPanel(
             # Replace the `plotOutput()` with the plotly version
-            plotlyOutput("plot"),
-            plotlyOutput("plot_cases")
+            tabsetPanel(
+                tabPanel("Deaths", plotlyOutput("plot")), 
+                tabPanel("Cases", plotlyOutput("plot_cases"))
+            )
+           # plotlyOutput("plot"),
+           # plotlyOutput("plot_cases")
             
             
         )
