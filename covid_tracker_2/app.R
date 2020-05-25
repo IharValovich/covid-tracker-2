@@ -31,7 +31,7 @@ data <- data %>%
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
-    titlePanel(h1(strong("COVID-19 Dashboard"), align = "center")),
+    titlePanel(h1(strong("COVID-19 Dashboard"), align = "center", style = "color:#2E86C1")),
     
     sidebarLayout(
         sidebarPanel(
