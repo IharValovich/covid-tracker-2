@@ -8,6 +8,7 @@
 #
 
 library(shiny)
+library(leaflet)
 library(utils)
 library(httr)
 
@@ -27,7 +28,8 @@ data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
 
 data$dateRep   <- as.character(data$dateRep)   
 data <- data %>%
-    mutate(days = dmy(data$dateRep))
+    mutate(days = dmy(data$dateRep)) %>% 
+    select(-1,-2,-3,-4,-8,-9,-10)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
@@ -57,7 +59,8 @@ ui <- fluidPage(#theme = "bootstrap.css",
             tabsetPanel(
                 tabPanel("Deaths", plotlyOutput("plot")), 
                 tabPanel("Cases", plotlyOutput("plot_cases")),
-                tabPanel("Map", leafletOutput("mymap"))
+                tabPanel("Map", leafletOutput("mymap")),
+				tabPanel("Table", DT::dataTableOutput("table"))
             ),
            # plotlyOutput("plot"),
            # plotlyOutput("plot_cases")
@@ -121,6 +124,12 @@ server <- function(input, output) {
             addProviderTiles("Esri.WorldImagery")
         # addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
         m  # Print the map
+    })
+	
+	output$table <- DT::renderDataTable({
+        data <- subset(data,
+                       countriesAndTerritories %in% input$continents)
+        data
     })
 }
 
