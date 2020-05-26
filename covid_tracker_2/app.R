@@ -33,7 +33,7 @@ data <- data %>%
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
-    titlePanel(h1(strong("COVID-19 Dashboard"), align = "center", style = "color:#2E86C1")),
+    titlePanel(h1(strong("COVID-19 Dashboard"), img(src = "covid-19-logo.jpg", height = 132, width = 132, align = "right"),align = "center", style = "color:#205d87")),
     
     sidebarLayout(
         sidebarPanel(
@@ -52,7 +52,7 @@ ui <- fluidPage(#theme = "bootstrap.css",
             # min(gapminder$year), max(gapminder$year),
             # value = c(1977, 2002))
             img(src = "logo-ecdc.png"),
-            h5("The downloadable data file from European Centre for Disease Prevention and Control is updated daily and contains the latest available public data on COVID-19")
+            h5("The downloadable data file from European Centre for Disease Prevention and Control is updated daily and contains the latest available public data on COVID-19", style = "color:#205d87")
         ),
         mainPanel(
             # Replace the `plotOutput()` with the plotly version
