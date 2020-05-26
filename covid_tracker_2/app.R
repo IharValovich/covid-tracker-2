@@ -23,11 +23,7 @@ library(dplyr)
 #write_disk(tf <- tempfile(fileext = ".csv")))
 
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", stringsAsFactors = TRUE)
 
-data$dateRep   <- as.character(data$dateRep)   
-data <- data %>%
-    mutate(days = dmy(data$dateRep))
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
