@@ -23,7 +23,11 @@ library(dplyr)
 #write_disk(tf <- tempfile(fileext = ".csv")))
 
 #read the Dataset sheet into “R”. The dataset will be called "data".
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", stringsAsFactors = TRUE)
 
+data$dateRep   <- as.character(data$dateRep)   
+data <- data %>%
+    mutate(days = dmy(data$dateRep))
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
@@ -52,8 +56,9 @@ ui <- fluidPage(#theme = "bootstrap.css",
             # Replace the `plotOutput()` with the plotly version
             tabsetPanel(
                 tabPanel("Deaths", plotlyOutput("plot")), 
-                tabPanel("Cases", plotlyOutput("plot_cases"))
-            )
+                tabPanel("Cases", plotlyOutput("plot_cases")),
+                tabPanel("Map", leafletOutput("mymap"))
+            ),
            # plotlyOutput("plot"),
            # plotlyOutput("plot_cases")
             
@@ -107,6 +112,15 @@ server <- function(input, output) {
             }
             p
         })
+    })
+    
+    output$mymap <- renderLeaflet({
+        m <- leaflet() %>%
+            addTiles() %>% # Add default OpenStreetMap map tiles
+            setView( lng = 19.145136, lat = 51.919438, zoom = 4 ) %>% 
+            addProviderTiles("Esri.WorldImagery")
+        # addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+        m  # Print the map
     })
 }
 
