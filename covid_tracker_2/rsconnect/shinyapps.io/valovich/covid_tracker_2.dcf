@@ -1,0 +1,12 @@
+name: covid_tracker_2
+title: covid_tracker_2
+username:
+account: valovich
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2382357
+bundleId: 3208479
+url: https://valovich.shinyapps.io/covid_tracker_2/
+when: 1590862249.13716
+asMultiple: FALSE
+asStatic: FALSE
