@@ -117,6 +117,7 @@ server <- function(input, output) {
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
                 labs(x = "Date", y = "Number of deaths") +
                 ggtitle(input$continents)
+                
             
             if (input$fit) {
                 p <- p + geom_smooth(method = "lm")
