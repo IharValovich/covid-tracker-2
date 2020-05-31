@@ -94,10 +94,9 @@ server <- function(input, output) {
             
             p_cases <- ggplot(data, aes(days, cases)) +
                 
-                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth()
-            #scale_x_log10() +
-            
-            ggtitle(input$continents)
+                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
+                labs(x = "Date", y = "Number of cases") +
+                ggtitle(input$continents)
             
             if (input$fit) {
                 p_cases <- p_cases + geom_smooth(method = "lm")
@@ -116,8 +115,7 @@ server <- function(input, output) {
             p <- ggplot(data, aes(days, deaths)) +
                 
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
-                #scale_x_log10() +
-                
+                labs(x = "Date", y = "Number of deaths") +
                 ggtitle(input$continents)
             
             if (input$fit) {
