@@ -57,7 +57,7 @@ ui <- fluidPage(#theme = "bootstrap.css",
                         selected = "Poland"),
             numericInput("size", "Point size", 1, 1, 5),
             checkboxInput("fit", "Add line of best fit", FALSE),
-            colourInput("color", "Point color", value = "blue"),
+            colourInput("color", "Point color", value = "red"),
             
             img(src = "logo-ecdc.png"),
             h5("The downloadable data file from European Centre for Disease Prevention and Control is updated daily and contains the latest available public data on COVID-19", style = "color:#205d87")
@@ -96,7 +96,8 @@ server <- function(input, output) {
                 
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
                 labs(x = "Date", y = "Number of cases") +
-                ggtitle(input$continents)
+                ggtitle(input$continents) +
+                theme_grey()
             
             if (input$fit) {
                 p_cases <- p_cases + geom_smooth(method = "lm")
@@ -117,6 +118,7 @@ server <- function(input, output) {
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
                 labs(x = "Date", y = "Number of deaths") +
                 ggtitle(input$continents)
+                
                 
             
             if (input$fit) {
