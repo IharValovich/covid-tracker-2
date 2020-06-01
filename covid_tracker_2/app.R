@@ -42,8 +42,10 @@ data_current_data <- inner_join(data, countries,by = c("geoId" ="country" ))
 data_current_data <- filter(data_current_data, cases != 0)
 data_current_data <- filter(data_current_data, days == Sys.Date())
 
-
-
+      #create geom_segment plot cases/continentExp
+# ggplot(data_current_data, aes(x = cases, y =  continentExp)) +
+#     geom_point(size = 4) +
+#     geom_segment(aes(xend = 120, yend =  continentExp), size = 1)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(#theme = "bootstrap.css",
