@@ -15,6 +15,7 @@ library(httr)
 
 library(ggplot2)
 library(plotly)
+library(ggthemes)
 library(colourpicker)
 library(readr)
 library(lubridate)
@@ -97,7 +98,7 @@ server <- function(input, output) {
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
                 labs(x = "Date", y = "Number of cases") +
                 ggtitle(input$continents) +
-                theme(rect = element_rect(fill = "grey"))
+                theme_calc()      #theme(rect = element_rect(fill = "grey"))
             
             if (input$fit) {
                 p_cases <- p_cases + geom_smooth(method = "lm")
@@ -118,7 +119,7 @@ server <- function(input, output) {
                 geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
                 labs(x = "Date", y = "Number of deaths") +
                 ggtitle(input$continents) +
-                theme(rect = element_rect(fill = "grey"))
+                theme_fivethirtyeight()                                        #theme(rect = element_rect(fill = "grey"))
                 
             
             if (input$fit) {
