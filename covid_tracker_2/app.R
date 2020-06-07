@@ -97,7 +97,7 @@ server <- function(input, output) {
             
             p_cases <- ggplot(data, aes(days, cases)) +
                 
-                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
+                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth(se =FALSE) +
                 labs(x = "Date", y = "Number of cases") +
                 ggtitle(input$continents) +
                 theme_calc()      #theme(rect = element_rect(fill = "grey"))
@@ -118,7 +118,7 @@ server <- function(input, output) {
             
             p <- ggplot(data, aes(days, deaths)) +
                 
-                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth() +
+                geom_point(size = input$size, col = input$color, alpha = 0.7) + geom_smooth(se =FALSE) +
                 labs(x = "Date", y = "Number of deaths") +
                 ggtitle(input$continents) +
                 theme_fivethirtyeight()                                        #theme(rect = element_rect(fill = "grey"))
