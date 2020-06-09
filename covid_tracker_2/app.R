@@ -20,6 +20,7 @@ library(colourpicker)
 library(readr)
 library(lubridate)
 library(dplyr)
+library(DT)
 
 #download the dataset from the ECDC website to a local temporary file
 #GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_memory())
