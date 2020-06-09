@@ -159,7 +159,8 @@ server <- function(input, output) {
     output$table <- DT::renderDataTable({
         data <- subset(data,
                        countriesAndTerritories %in% input$continents)
-        data
+        
+        DT::datatable(data, rownames = FALSE, colnames = c('country' = 7, 'continent' = 11))
     })
 }
 
