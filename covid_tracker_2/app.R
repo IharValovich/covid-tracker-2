@@ -157,10 +157,13 @@ server <- function(input, output) {
     #End Map________-----------------------------------------------
     
     output$table <- DT::renderDataTable({
+        
         data <- subset(data,
                        countriesAndTerritories %in% input$continents)
+        data_for_table <- data %>% select(-2, -3, -4, -8, -9, -12)
         
-        DT::datatable(data, rownames = FALSE, colnames = c('country' = 7, 'continent' = 11))
+        DT::datatable(data_for_table, rownames = FALSE, 
+        colnames = c('date'= 1, 'country' = 4, 'population'= 5, 'continent' = 6))
     })
 }
 
