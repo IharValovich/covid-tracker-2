@@ -21,6 +21,7 @@ library(readr)
 library(lubridate)
 library(dplyr)
 library(DT)
+library(shinydashboard)
 
 #download the dataset from the ECDC website to a local temporary file
 #GET("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", authenticate(":", ":", type="ntlm"), write_memory())
@@ -31,7 +32,10 @@ data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv",
 
 data$dateRep   <- as.character(data$dateRep)   
 data <- data %>%
-    mutate(days = dmy(data$dateRep))    #%>%     select(-1,-2,-3,-4,-8,-9,-10)
+    mutate(days = dmy(data$dateRep)) %>%
+    filter(cases>=0 & deaths >= 0)
+total_cases <- data %>% summarise(sum(cases))
+total_deaths <- data %>%  summarise(sum(deaths))
 
 # current date
 # current_data <- data %>%
@@ -79,7 +83,8 @@ ui <- fluidPage(#theme = "bootstrap.css",
             # plotlyOutput("plot"),
             # plotlyOutput("plot_cases")
             #leafletOutput("mymap")
-            
+            # valueBox(total_deaths, "subtitle", icon = NULL, color = "aqua", width = 4,
+                     # href = NULL)
         )
     )
 )
